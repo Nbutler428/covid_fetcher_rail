@@ -18,8 +18,8 @@ data = response.json()
 
 
 if not data:
-    print("No data returned from the API. Please check your START_DATE or the API URL.")
-    exit(1)
+    print("No data returned for today.")
+    exit(0)
 
 
 columns = list(data[0].keys())
