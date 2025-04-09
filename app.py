@@ -9,7 +9,7 @@ START_DATE = os.environ.get('START_DATE', datetime.now().strftime('%Y-%m-%d'))
 TABLE_NAME = os.environ.get('TABLE_NAME', 'covid_data')
 
 # Build the API URL
-url = f"https://data.cityofnewyork.us/resource/rc75-m7u3.json"
+url = f"https://data.cityofnewyork.us/resource/rc75-m7u3.json?$where=date_of_interest>'2022-11-24T00:00:00.000'&$limit=1000"
 print(f"Fetching data from: {url}")  # Debug output
 
 # Fetch the data
