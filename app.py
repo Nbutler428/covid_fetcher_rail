@@ -1,16 +1,15 @@
 import os
 import requests
 import psycopg2
-from datetime import datetime
 
 
 DATABASE_URL = os.environ['DATABASE_URL']
-START_DATE = os.environ.get('START_DATE', datetime.now().strftime('%Y-%m-%d'))
 TABLE_NAME = os.environ.get('TABLE_NAME', 'covid_data')
 
-today = datetime.now().strftime('%Y-%m-%dT00:00:00.000')
-url = f"https://data.cityofnewyork.us/resource/rc75-m7u3.json?$where=date_of_interest='{today}'"
-print(f"Fetching today's data from: {url}")
+
+target_date = '2025-03-31T00:00:00.000'
+url = f"https://data.cityofnewyork.us/resource/rc75-m7u3.json?$where=date_of_interest='{target_date}'"
+print(f"Fetching data from: {url}")
 
 
 response = requests.get(url)
@@ -18,7 +17,7 @@ data = response.json()
 
 
 if not data:
-    print("No data returned for today.")
+    print(f"No data returned for {target_date}.")
     exit(0)
 
 
@@ -50,3 +49,4 @@ conn.commit()
 cur.close()
 conn.close()
 print("Data inserted successfully.")
+
