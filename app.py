@@ -8,13 +8,10 @@ DATABASE_URL = os.environ['DATABASE_URL']
 TABLE_NAME = os.environ.get('TABLE_NAME', 'covid_data')
 
 
-START_DATE = os.environ.get('START_DATE', '2025-03-31T00:00:00.000')
 
 
-url = (
-    f"https://data.cityofnewyork.us/resource/rc75-m7u3.json?"
-    f"$where=date_of_interest>'{START_DATE}'&$limit=1000"
-)
+
+url = (https://data.cityofnewyork.us/resource/rc75-m7u3.json?$where=date_of_interest>'2025-03-31T00:00:00.000'&$limit=1000)
 print(f"Fetching data from: {url}")
 
 response = requests.get(url)
